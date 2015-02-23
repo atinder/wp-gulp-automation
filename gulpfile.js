@@ -23,33 +23,33 @@ var plumberErrorHandler = { errorHandler: notify.onError({
 
 
 gulp.task('sass', function () {
-  gulp.src('./css/src/*.scss')
+  gulp.src(themeDir + '/css/src/*.scss')
     .pipe(plumber(plumberErrorHandler))
     .pipe(sass())
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest(themeDir + '/css'))
     .pipe(livereload());
 });
 
 
 gulp.task('js', function () {
-  gulp.src('./js/src/*.js')
+  gulp.src(themeDir + '/js/src/*.js')
     .pipe(plumber(plumberErrorHandler))
     .pipe(jshint())
     .pipe(jshint.reporter('fail'))
     .pipe(concat('theme.js'))
-    .pipe(gulp.dest('./js'))
+    .pipe(gulp.dest(themeDir + '/js'))
     .pipe(livereload());
 });
 
 
 gulp.task('img', function() {
-  gulp.src('./img/src/*')
+  gulp.src(themeDir + '/img/src/*')
     .pipe(plumber(plumberErrorHandler))
     .pipe(imagemin({
       optimizationLevel: 7,
       progressive: true
     }))
-    .pipe(gulp.dest('./img'))
+    .pipe(gulp.dest(themeDir + '/img'))
     .pipe(livereload());
 });
 
@@ -57,11 +57,11 @@ gulp.task('watch', function() {
   // live reload listen
   livereload.listen();
   // Watch SCSS changes.
-  gulp.watch('css/src/*.scss', ['sass']);
+  gulp.watch(themeDir + '/css/src/*.scss', ['sass']);
   // Watch js changes.
-  gulp.watch('js/src/*.js', ['js']);
+  gulp.watch(themeDir + '/js/src/*.js', ['js']);
   // Watch image changes.
-  gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
+  gulp.watch(themeDir + '/img/src/*.{png,jpg,gif}', ['img']);
 });
 
 
